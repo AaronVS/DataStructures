@@ -17,17 +17,17 @@ void list::insert(Session ses, positionList pos)
 	}
 	else if (isEmptyList())
 	{
-		header->sn = ses;
+		header->setSession(ses);
 	}
 	else 
 	{
-		temp->sn = ses;
-		temp->next = pos->next;
-		temp->previous = pos;
-		pos->next->previous = temp;
-		pos->next = temp;
-		pos->next = pos;
-		temp = pos->next;
+		temp->setSession(ses);
+		temp->setNext(pos->getNext());
+		temp->setPrevious(pos);
+		pos->getNext()->setPrevious(temp);
+		pos->setNext(temp);
+		pos->setNext(pos);
+		temp = pos->getNext();
 	}
 }
 void list::remove(positionList pos)
@@ -36,13 +36,13 @@ void list::remove(positionList pos)
 	{
 		throw;
 	}
-	if (pos->next != NULL)
+	if (pos->getNext() != NULL)
 	{
-		pos->next->previous = pos->previous;
+		pos->getNext()->setPrevious(pos->getPrevious());
 	}
-	if (pos->previous != NULL)
+	if (pos->getPrevious() != NULL)
 	{
-		pos->previous->next = pos->next;
+		pos->getPrevious()->setNext(pos->getNext());
 	}
 	delete(pos);
 };
@@ -53,7 +53,7 @@ Session list::retrieve(positionList pos)
 	{
 		throw;
 	};
-	return pos->sn;
+	return pos->getSession();
 }
 
 positionList list::next(positionList pos)
@@ -62,7 +62,7 @@ positionList list::next(positionList pos)
 	{
 		throw;
 	};
-	return pos->next;
+	return pos->getNext();
 }
 positionList list::previous(positionList pos)
 {
@@ -70,7 +70,7 @@ positionList list::previous(positionList pos)
 	{
 		throw;
 	};
-	return pos->previous;
+	return pos->getPrevious();
 }
 void list::makenullList() 
 {
@@ -89,5 +89,5 @@ positionList list::getHeader()
 }
 stack list::getStackObjects() 
 {
-	return header->sn.getStObject();
+	return header->getSession().getStObject();
 }

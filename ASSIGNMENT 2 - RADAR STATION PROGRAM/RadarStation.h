@@ -14,8 +14,9 @@
 using namespace std;
 
 class RadarStation {
-	list listOfSessions;
-	Session lastSession;
+	private:
+		list listOfSessions;
+		Session lastSession;
 
 	public:
 		RadarStation();

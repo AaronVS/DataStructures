@@ -10,7 +10,8 @@ typedef nodeList* positionList;
 
 class list 
 {
-	positionList header;
+	private:
+		positionList header;
 
 	public:
 		list();
@@ -18,7 +19,6 @@ class list
 		void insert(Session session, positionList pos);
 		void remove(positionList pos);
 		Session retrieve(positionList pos);
-		//Session locate(Session ses);
 		positionList next(positionList pos);
 		positionList previous(positionList pos);
 		void makenullList();

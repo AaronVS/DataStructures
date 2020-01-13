@@ -29,24 +29,29 @@ void hashStructure::insert(FlyingObject givenObject, string plate)
 {
 	int index = hashFunction(plate);
 
-	if (hashTable[index]->key == "")
+	if (hashTable[index]->getKey() == "")
 	{
-		hashTable[index]->key = plate;
-		hashTable[index]->object = givenObject;
+		hashTable[index]->setKey(plate);
+		hashTable[index]->setObject(givenObject);
 	}
 	else
 	{
 		nodeHash *linkedElement = hashTable[index];
 		nodeHash *auxPtr = new nodeHash();
 
-		auxPtr->key = plate;
-		auxPtr->object = givenObject;
-		auxPtr->next = NULL;
+		auxPtr->setKey(plate);
+		auxPtr->setObject(givenObject);
+		auxPtr->setNext(NULL);
 
-		while (linkedElement->next != NULL)
+		while (linkedElement->getNext() != NULL)
 		{
-			linkedElement = linkedElement->next;
+			linkedElement = linkedElement->getNext();
 		}
-		linkedElement->next = auxPtr;
+		linkedElement->setNext(auxPtr);
 	}
+}
+
+nodeHash* hashStructure::getNodeAtIndex(int index)
+{
+	return hashTable[index];
 }

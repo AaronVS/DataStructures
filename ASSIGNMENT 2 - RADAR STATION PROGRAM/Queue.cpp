@@ -22,8 +22,8 @@ string queue::dequeue()
 	else
 	{
 		positionQueue temp = fr;
-		fr = fr->next;
-		element = temp->element;
+		fr = fr->getNext();
+		element = temp->getElement();
 
 	}
 	
@@ -33,32 +33,32 @@ string queue::dequeue()
 void queue::enqueue(string element) 
 {
 	nodeQueue* pos = new nodeQueue();
-	pos->element = element;
-	pos->next = NULL;
+	pos->setElement(element);
+	pos->setNext(NULL);
 
 	if (isEmptyQueue())
 	{
 		fr = pos;
 		rear = pos;
-		fr->next = rear;
-		rear->next = NULL;
+		fr->setNext(rear);
+		rear->setNext(NULL);
 	}
 	else
 	{
 		positionQueue temp = rear;
 		rear = pos;
-		temp->next = rear;
+		temp->setNext(rear);
 	}
 }
 
 string queue::front() 
 {
-	return fr->element;
+	return fr->getElement();
 }
 
 string queue::rearElement()
 {
-	return rear->element;
+	return rear->getElement();
 }
 
 void queue::makenullQueue()
@@ -71,6 +71,6 @@ void queue::makenullQueue()
 
 bool queue::isEmptyQueue()
 {
-	return  fr == NULL || fr->next == NULL && fr->element == "";
+	return  fr == NULL || fr->getNext() == NULL && fr->getElement() == "";
 }
 

@@ -8,8 +8,8 @@ using namespace std;
 
 class hashStructure
 {
-private: static const int tableSize = 1000;
-public:
+private: 
+	static const int tableSize = 1000;
 	nodeHash *hashTable[tableSize];
 
 public:
@@ -17,6 +17,7 @@ public:
 	~hashStructure();
 	int hashFunction(string plate);
 	void insert(FlyingObject givenObject, string plate);
+	nodeHash* getNodeAtIndex(int index);
 };
 
 #endif

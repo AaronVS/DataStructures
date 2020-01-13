@@ -7,13 +7,20 @@ using namespace std;
 
 class nodeHash
 {
-public:
-	string key;
-	FlyingObject object;
-	nodeHash* next;
-public:
-	nodeHash();
-	~nodeHash();
+	private:
+		string key;
+		FlyingObject object;
+		nodeHash* next;
+
+	public:
+		nodeHash();
+		~nodeHash();
+		string getKey();
+		void setKey(string givenKey);
+		FlyingObject getObject();
+		void setObject(FlyingObject givenObject);
+		nodeHash* getNext();
+		void setNext(nodeHash* givenNext);
 };
 
 

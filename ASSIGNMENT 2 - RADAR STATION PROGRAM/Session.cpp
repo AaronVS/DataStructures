@@ -306,28 +306,28 @@ void Session::printPlatesByNumberHash(string numbers)
 {
 	int column = 0;
 	int index = getHashStructure().hashFunction(numbers);
-	nodeHash* linkedElement = getHashStructure().hashTable[index];
+	nodeHash* linkedElement = getHashStructure().getNodeAtIndex(index);
 
 	cout << "Hash Table Data\n\n";
 
-	while (linkedElement != NULL && linkedElement->key != "")						// Goes through the linked elements from hashTable[index] and print them
+	while (linkedElement != NULL && linkedElement->getKey() != "")						// Goes through the linked elements from hashTable[index] and print them
 	{
 		if (column < 6)
 		{
-			cout << "| " << linkedElement->key << " ";
+			cout << "| " << linkedElement->getKey()<< " ";
 			column++;
 		}
 		else
 		{
-			cout << "| " << linkedElement->key << " |" << endl;
+			cout << "| " << linkedElement->getKey()<< " |" << endl;
 			column = 0;
 		}
-		if (linkedElement->next == NULL)
+		if (linkedElement->getNext() == NULL)
 		{
 			cout << "|" << endl;
 		}
 
-		linkedElement = linkedElement->next;
+		linkedElement = linkedElement->getNext();
 	}
 }
 
@@ -368,24 +368,24 @@ void Session::printFlyingObjectsHash(string plate, string type, string size, str
 	{
 		for (int i = 0; i < 1000; i++)																// Goes through all the hash table
 		{
-			linkedElement = getHashStructure().hashTable[i];										// Linked element initialized as first element of the given value in the hash table
+			linkedElement = getHashStructure().getNodeAtIndex(i);									// Linked element initialized as first element of the given value in the hash table
 
 			while (linkedElement != NULL)
 			{
-				if (type == linkedElement->object.getType() || type == "-1")						// Checks if type is the given one or -1
+				if (type == linkedElement->getObject().getType() || type == "-1")						// Checks if type is the given one or -1
 				{
-					if (size == linkedElement->object.getSize() || size == "-1")					// Checks if size is the given one or -1
+					if (size == linkedElement->getObject().getSize() || size == "-1")					// Checks if size is the given one or -1
 					{
-						if (origin == linkedElement->object.getOrigin() || origin == "-1")			// Checks if origin is the given one or -1
+						if (origin == linkedElement->getObject().getOrigin() || origin == "-1")			// Checks if origin is the given one or -1
 						{
-							if (linkedElement->key != "")											// Avoid printing an empty element
+							if (linkedElement->getKey() != "")											// Avoid printing an empty element
 							{
-								cout << "	" << linkedElement->object.getPlate() << "			" << linkedElement->object.getSize() << "			" << linkedElement->object.getOrigin() << "			" << linkedElement->object.getType() << endl;
+								cout << "	" << linkedElement->getObject().getPlate() << "			" << linkedElement->getObject().getSize() << "			" << linkedElement->getObject().getOrigin() << "			" << linkedElement->getObject().getType() << endl;
 							}
 						}
 					}
 				}
-				linkedElement = linkedElement->next;
+				linkedElement = linkedElement->getNext();
 			}
 		}
 	}
@@ -393,24 +393,24 @@ void Session::printFlyingObjectsHash(string plate, string type, string size, str
 	{
 		index = getHashStructure().hashFunction(plate);
 
-		nodeHash* linkedElement = getHashStructure().hashTable[index];
+		nodeHash* linkedElement = getHashStructure().getNodeAtIndex(index);
 
 		while (linkedElement != NULL)
 		{
-			if (type == linkedElement->object.getType() || type == "-1")							// Checks if type is the given one or -1
+			if (type == linkedElement->getObject().getType() || type == "-1")							// Checks if type is the given one or -1
 			{
-				if (size == linkedElement->object.getSize() || size == "-1")						// Checks if size is the given one or -1
+				if (size == linkedElement->getObject().getSize() || size == "-1")						// Checks if size is the given one or -1
 				{
-					if (origin == linkedElement->object.getOrigin() || origin == "-1")				// Checks if origin is the given one or -1
+					if (origin == linkedElement->getObject().getOrigin() || origin == "-1")				// Checks if origin is the given one or -1
 					{
-						if (plate == linkedElement->object.getPlate())								// Checks if plate is the given one 
+						if (plate == linkedElement->getObject().getPlate())								// Checks if plate is the given one 
 						{
-							cout << "	" << linkedElement->object.getPlate() << "			" << linkedElement->object.getSize() << "			" << linkedElement->object.getOrigin() << "			" << linkedElement->object.getType() << endl;
+							cout << "	" << linkedElement->getObject().getPlate() << "			" << linkedElement->getObject().getSize() << "			" << linkedElement->getObject().getOrigin() << "			" << linkedElement->getObject().getType() << endl;
 						}
 					}
 				}
 			}
-			linkedElement = linkedElement->next;
+			linkedElement = linkedElement->getNext();
 		}
 	}
 }
@@ -450,23 +450,23 @@ int Session::countFlyingObjectsHash(string type, string size, string origin)
 	
 	for (int i = 0; i < 1000; i++)																		//Goes through all the hash table
 	{
-		linkedElement = getHashStructure().hashTable[i];
+		linkedElement = getHashStructure().getNodeAtIndex(i);
 		while (linkedElement != NULL)
 		{
-			if (type == linkedElement->object.getType() || type == "-1")								// Checks if type is the given one or -1
+			if (type == linkedElement->getObject().getType() || type == "-1")								// Checks if type is the given one or -1
 			{
-				if (size == linkedElement->object.getSize() || size == "-1")							// Checks if size is the given one or -1
+				if (size == linkedElement->getObject().getSize() || size == "-1")							// Checks if size is the given one or -1
 				{
-					if (origin == linkedElement->object.getOrigin() || origin == "-1")					// Checks if origin is the given one or -1
+					if (origin == linkedElement->getObject().getOrigin() || origin == "-1")					// Checks if origin is the given one or -1
 					{
-						if (linkedElement->key != "")													// Avoids printing an empty element
+						if (linkedElement->getKey() != "")													// Avoids printing an empty element
 						{
 							countedElements++;
 						}
 					}
 				}
 			}
-			linkedElement = linkedElement->next;
+			linkedElement = linkedElement->getNext();
 		}
 	}
 	return countedElements;
@@ -494,14 +494,14 @@ void  Session::printAllFlyingObjectsHash()
 	int index = 0;
 	nodeHash* linkedElement;
 
-	for (int i = 0; i < 1000; i++)															// Goes through all the hash table
+	for (int i = 0; i < 1000; i++)																// Goes through all the hash table
 	{
-		linkedElement = getHashStructure().hashTable[i];									// Initializes linked element as the first element of the array["index"]
+		linkedElement = getHashStructure().getNodeAtIndex(i);									// Initializes linked element as the first element of the array["index"]
 
-		if (linkedElement->key != "")														// Avoid printing empty elements
+		if (linkedElement->getKey() != "")														// Avoid printing empty elements
 		{
-			cout << "	" << linkedElement->object.getPlate() << "			" << linkedElement->object.getSize() << "			" << linkedElement->object.getOrigin() << "			" << linkedElement->object.getType() << endl;
-			linkedElement = linkedElement->next;
+			cout << "	" << linkedElement->getObject().getPlate() << "			" << linkedElement->getObject().getSize() << "			" << linkedElement->getObject().getOrigin() << "			" << linkedElement->getObject().getType() << endl;
+			linkedElement = linkedElement->getNext();
 		}
 	}
 }

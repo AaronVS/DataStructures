@@ -11,9 +11,9 @@ typedef nodeQueue* positionQueue;
 
 class queue 
 {
-	
-	positionQueue fr;
-	positionQueue rear;
+	private:
+		positionQueue fr;
+		positionQueue rear;
 
 	public:
 		queue();

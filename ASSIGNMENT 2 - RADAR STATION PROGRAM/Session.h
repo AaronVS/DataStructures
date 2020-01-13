@@ -5,23 +5,6 @@
 #include "Hash.h"
 
 class Session {
-	stack stackObjects;
-	int numberObjects;
-	int numberSTS;
-	double timeOp;
-	double timeAverage;
-
-	queue typeQueue;
-	queue sizeQueue;
-	queue originQueue;
-	queue plate1Queue;
-	queue plate2Queue;
-	queue plate3Queue;
-	queue plate4Queue;
-	queue plate5Queue;
-
-	hashStructure hashSt;
-
 	private: 
 		static const int typeArraySize = 7;
 		static const int sizeArraySize = 5;
@@ -31,6 +14,23 @@ class Session {
 		static const int plate3ArraySize = 23;
 		static const int plate4ArraySize = 26;
 		static const int plate5ArraySize = 32;
+
+		stack stackObjects;
+		int numberObjects;
+		int numberSTS;
+		double timeOp;
+		double timeAverage;
+
+		queue typeQueue;
+		queue sizeQueue;
+		queue originQueue;
+		queue plate1Queue;
+		queue plate2Queue;
+		queue plate3Queue;
+		queue plate4Queue;
+		queue plate5Queue;
+
+		hashStructure hashSt;
 
 	public:
 		Session();

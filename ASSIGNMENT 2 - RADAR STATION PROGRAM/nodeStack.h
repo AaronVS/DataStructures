@@ -7,12 +7,17 @@ using namespace std;
 
 class nodeStack
 {
-	public:
+	private:
 		FlyingObject object;
 		nodeStack* next;
+	
 	public:
 		nodeStack();
 		~nodeStack();
+		FlyingObject getObject();
+		void setObject(FlyingObject givenObject);
+		nodeStack* getNext();
+		void setNext(nodeStack* givenNext);
 };
 
 #endif

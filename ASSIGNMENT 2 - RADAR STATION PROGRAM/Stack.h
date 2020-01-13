@@ -10,7 +10,8 @@ typedef nodeStack* positionStack;
 
 class stack 
 {
-	positionStack root;
+	private:
+		positionStack root;
 
 	public:
 		stack();

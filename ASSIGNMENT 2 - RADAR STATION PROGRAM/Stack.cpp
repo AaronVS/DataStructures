@@ -20,8 +20,8 @@ FlyingObject stack::pop()
 	else 
 	{
 		positionStack temp = root;
-		root = root->next;
-		element = temp->object;
+		root = root->getNext();
+		element = temp->getObject();
 
 	}
 	return element;
@@ -30,16 +30,16 @@ FlyingObject stack::pop()
 void stack::push(FlyingObject element) 
 {
 	positionStack pos = new nodeStack();
-	pos->object = element;
-	pos->next = NULL;
+	pos->setObject(element);
+	pos->setNext(NULL);
 	positionStack temp = root;
 	root = pos;
-	root->next = temp;
+	root->setNext(temp); 
 }
 
 FlyingObject stack::top() 
 {
-	return root->object;
+	return root->getObject();
 }
 
 void stack::makenullStack()
@@ -52,10 +52,10 @@ void stack::makenullStack()
 
 bool stack::isEmptyStack()
 {
-	return root->next == NULL && root->object.getPlate() == "";
+	return root->getNext() == NULL && root->getObject().getPlate() == "";
 }
 
 FlyingObject stack::getObject() 
 {
-	return root->object;
+	return root->getObject();
 }

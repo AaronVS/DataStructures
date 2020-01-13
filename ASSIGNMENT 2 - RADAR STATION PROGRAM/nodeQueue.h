@@ -7,13 +7,17 @@ using namespace std;
 
 class nodeQueue
 {
-public:
-	string element;
-	nodeQueue* next;
-public:
-	nodeQueue();
-	~nodeQueue();
+	private:
+		string element;
+		nodeQueue* next;
 
+	public:
+		nodeQueue();
+		~nodeQueue();
+		string getElement();
+		void setElement(string givenElement);
+		nodeQueue* getNext();
+		void setNext(nodeQueue* givenNext);
 };
 
 #endif // NODEQUEUE_H

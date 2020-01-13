@@ -10,3 +10,33 @@ nodeList::nodeList()
 nodeList::~nodeList()
 {
 }
+
+Session nodeList::getSession()
+{
+	return sn;
+}
+
+void nodeList::setSession(Session givenSession)
+{
+	sn = givenSession;
+}
+
+nodeList* nodeList::getNext()
+{
+	return next;
+}
+
+void nodeList::setNext(nodeList* givenNext)
+{
+	next = givenNext;
+}
+
+nodeList* nodeList::getPrevious()
+{
+	return previous;
+}
+
+void nodeList::setPrevious(nodeList* givenPrevious)
+{
+	previous = givenPrevious;
+}
