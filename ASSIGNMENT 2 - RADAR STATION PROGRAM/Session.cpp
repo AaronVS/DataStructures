@@ -448,7 +448,7 @@ int Session::countFlyingObjectsHash(string type, string size, string origin)
 	int countedElements = 0;
 	nodeHash* linkedElement;
 	
-	for (int i = 0; i < 1000; i++)																		//Goes through all the hash table
+	for (int i = 0; i < 1000; i++)																			//Goes through all the hash table
 	{
 		linkedElement = getHashStructure().getNodeAtIndex(i);
 		while (linkedElement != NULL)
@@ -459,7 +459,7 @@ int Session::countFlyingObjectsHash(string type, string size, string origin)
 				{
 					if (origin == linkedElement->getObject().getOrigin() || origin == "-1")					// Checks if origin is the given one or -1
 					{
-						if (linkedElement->getKey() != "")													// Avoids printing an empty element
+						if (linkedElement->getKey() != "")
 						{
 							countedElements++;
 						}
